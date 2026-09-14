@@ -1,0 +1,21 @@
+# Zura GitHub App manifest
+# Create the app at https://github.com/organizations/Zura-Org/settings/apps/new
+# and copy these values, or register via the manifest flow.
+name: Zura Bot
+url: https://zura.dev
+description: Awards Zura points for merged PRs on tagged issues and pays contributors USDC on ARC.
+hook_attributes:
+  url: https://<your-railway-domain>/api/webhooks/github
+redirect_url: https://<your-railway-domain>/api/auth/github/callback
+public: true
+
+default_permissions:
+  issues: write          # comment, assign, read labels
+  pull_requests: write   # comment on PRs, list files
+  checks: read           # verify CI before awarding points
+  statuses: read
+  metadata: read
+
+default_events:
+  - issues
+  - pull_request
