@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-ink-950 text-mist-200 antialiased;
+}
+
+::selection {
+  @apply bg-zura/40 text-white;
+}
+
+@layer components {
+  .container-z {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .card {
+    @apply rounded-2xl border border-ink-700 bg-ink-900;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wide text-mist-400;
+  }
+  .input {
+    @apply w-full rounded-lg border border-ink-700 bg-ink-850 px-3 py-2 text-sm text-white placeholder:text-mist-400
+      outline-none transition focus:border-zura focus:ring-2 focus:ring-zura/30;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.grid-glow {
+  background-image: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124, 92, 255, 0.18), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
