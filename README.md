@@ -44,6 +44,18 @@ cp contracts/.env.example contracts/.env   # fill DEPLOYER_PRIVATE_KEY, OPERATOR
 npm run contracts:deploy
 ```
 
+## Running locally
+
+```bash
+npm install
+cp backend/.env.example backend/.env && cp frontend/.env.example frontend/.env.local
+npm run db:migrate
+npm run backend:dev    # :4000
+npm run frontend:dev   # :3000
+```
+
+See [backend/README.md](backend/README.md) for the API and bot, and [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for Supabase, Circle, ARC, GitHub App, Railway and Vercel setup.
+
 ## Milestones
 
 1. **Foundation** – contracts on ARC testnet, Circle Wallets, GitHub OAuth, project submission
