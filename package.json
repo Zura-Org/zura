@@ -1,0 +1,20 @@
+{
+  "name": "zura",
+  "private": true,
+  "description": "Contributor rewards infrastructure for the ARC ecosystem",
+  "workspaces": [
+    "contracts",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "contracts:build": "npm run build -w contracts",
+    "contracts:test": "npm test -w contracts",
+    "contracts:deploy": "npm run deploy:testnet -w contracts",
+    "backend:dev": "npm run dev -w backend",
+    "backend:test": "npm test -w backend",
+    "frontend:dev": "npm run dev -w frontend",
+    "db:migrate": "npm run migrate -w backend"
+  },
+  "license": "MIT"
+}
