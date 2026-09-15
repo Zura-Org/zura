@@ -64,6 +64,9 @@ export async function api<T = any>(path: string, init: RequestInit & { json?: un
 }
 
 export function loginUrl(next = "/explore") {
+  // Local development without a GitHub OAuth app: sign in as a seeded demo user.
+  const devUser = process.env.NEXT_PUBLIC_DEV_LOGIN_USER;
+  if (devUser) return `${API_URL}/api/auth/dev-login?username=${encodeURIComponent(devUser)}&next=${encodeURIComponent(next)}`;
   return `${API_URL}/api/auth/github?next=${encodeURIComponent(next)}`;
 }
 

@@ -87,6 +87,25 @@ authRouter.post(
   }),
 );
 
+/**
+ * Local development only: sign in as an existing user without GitHub OAuth.
+ * Requires NODE_ENV=development AND DEV_LOGIN=true; never mounted otherwise.
+ */
+if (config.NODE_ENV === "development" && config.DEV_LOGIN) {
+  authRouter.get(
+    "/dev-login",
+    asyncHandler(async (req, res) => {
+      const username = String(req.query.username ?? "demo-maintainer");
+      const next = typeof req.query.next === "string" && req.query.next.startsWith("/") ? req.query.next : "/explore";
+      const user = await one("select * from users where github_username = $1", [username]);
+      if (!user) throw new HttpError(404, "no such local user - run npm run seed -w backend");
+      const token = signSession({ id: user.id, githubUsername: user.github_username });
+      res.cookie(SESSION_COOKIE, token, { ...cookieOpts, maxAge: 7 * 24 * 3600 * 1000 });
+      res.redirect(`${config.FRONTEND_URL}/auth/callback#token=${token}&next=${encodeURIComponent(next)}`);
+    }),
+  );
+}
+
 authRouter.post("/logout", (_req, res) => {
   res.clearCookie(SESSION_COOKIE, cookieOpts);
   res.json({ ok: true });

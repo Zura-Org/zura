@@ -38,6 +38,7 @@ const schema = z.object({
   CIRCLE_RELAYER_WALLET_BASE_SEPOLIA: optional,
 
   KYC_REQUIRED: z.enum(["true", "false"]).default("false").transform((v) => v === "true"),
+  DEV_LOGIN: z.enum(["true", "false"]).default("false").transform((v) => v === "true"),
   WORKER_ENABLED: z.enum(["true", "false"]).default("true").transform((v) => v === "true"),
 });
 

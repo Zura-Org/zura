@@ -19,3 +19,7 @@ frontend/next-env.d.ts
 
 # backend
 backend/dist/
+backend/.local-pg/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
